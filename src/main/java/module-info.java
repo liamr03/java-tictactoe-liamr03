@@ -1,4 +1,4 @@
-module org.example.javafx24 {
+module org.example.javafx {
     requires javafx.controls;
     requires javafx.fxml;
 
