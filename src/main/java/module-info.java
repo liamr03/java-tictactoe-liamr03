@@ -5,8 +5,8 @@ module org.example.javafx {
 
     opens org.example.javafx24 to javafx.fxml;
     exports org.example.javafx24;
-    exports org.example.javafx24.Controller;
-    opens org.example.javafx24.Controller to javafx.fxml;
-    exports org.example.javafx24.Model;
-    opens org.example.javafx24.Model to javafx.fxml;
+    exports org.example.javafx24.controller;
+    opens org.example.javafx24.controller to javafx.fxml;
+    exports org.example.javafx24.model;
+    opens org.example.javafx24.model to javafx.fxml;
 }
