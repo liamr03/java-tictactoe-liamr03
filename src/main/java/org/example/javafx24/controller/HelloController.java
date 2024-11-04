@@ -32,9 +32,8 @@ public class HelloController {
 
     //At start of the game
     public void initialize() {
-        playerTurn = true;
-        Model.resetBoard();
-        updateView();
+        playerTurn = true; //Sets the player turn to start
+        resetGame(); //Method to reset board and update view
         updateScores(); // Ensure scores are displayed on game start
     }
 
