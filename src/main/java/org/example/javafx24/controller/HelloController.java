@@ -12,15 +12,8 @@ import javafx.scene.control.Label;
 public class HelloController {
 
     //Importing all buttons from view
-    public Button button1;
-    public Button button2;
-    public Button button3;
-    public Button button4;
-    public Button button5;
-    public Button button6;
-    public Button button7;
-    public Button button8;
-    public Button button9;
+    public Button button1, button2, button3, button4, button5, button6, button7, button8, button9;
+    public Button[] buttons;
 
     //Label to store the current score
     public Label scoreXLabel;
@@ -32,6 +25,7 @@ public class HelloController {
 
     //At start of the game
     public void initialize() {
+        buttons = new Button[]{button1, button2, button3, button4, button5, button6, button7, button8, button9};
         playerTurn = true; //Sets the player turn to start
         resetGame(); //Method to reset board and update view
         updateScores(); // Ensure scores are displayed on game start
@@ -45,43 +39,35 @@ public class HelloController {
         updateView(); // Update the view to reflect the reset state
     }
 
-    //Check if any button on the board is clicked and take the b
+    //If it's player turn and you click a button it will check if it's your turn and let you play
     public void buttonClicked(ActionEvent actionEvent) {
         if (playerTurn) {
             int position = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6)) - 1; // Get button position from ID
             if (Model.makeMove(position, 'X')) {
                 updateView();
-                checkGameStatus();
-                playerTurn = false;
-                if (!Model.checkWin() && !Model.checkTie())
+                checkGameStatus(); //Check the game status if it's a win, tie or loss before moving forward
+
+                // If it's not a win or tie, make AI's move after player turn
+                if (!Model.checkWin() && !Model.checkTie()) {
+                    playerTurn = false;
                     makeAIMove();
+                }
             }
         }
     }
 
     private void setButtonsEnabled(boolean enabled) {
-        button1.setDisable(!enabled);
-        button2.setDisable(!enabled);
-        button3.setDisable(!enabled);
-        button4.setDisable(!enabled);
-        button5.setDisable(!enabled);
-        button6.setDisable(!enabled);
-        button7.setDisable(!enabled);
-        button8.setDisable(!enabled);
-        button9.setDisable(!enabled);
+        for (Button button : buttons) {
+            button.setDisable(!enabled);
+        }
     }
-        //UpdateView makes the button text empty until its pressed.
+
+    //UpdateView makes the button text empty until its pressed.
     public void updateView() {
         char[] board = Model.getBoard();
-        button1.setText(board[0] == '-' ? "" : String.valueOf(board[0]));
-        button2.setText(board[1] == '-' ? "" : String.valueOf(board[1]));
-        button3.setText(board[2] == '-' ? "" : String.valueOf(board[2]));
-        button4.setText(board[3] == '-' ? "" : String.valueOf(board[3]));
-        button5.setText(board[4] == '-' ? "" : String.valueOf(board[4]));
-        button6.setText(board[5] == '-' ? "" : String.valueOf(board[5]));
-        button7.setText(board[6] == '-' ? "" : String.valueOf(board[6]));
-        button8.setText(board[7] == '-' ? "" : String.valueOf(board[7]));
-        button9.setText(board[8] == '-' ? "" : String.valueOf(board[8]));
+        for (int i = 0; i < buttons.length; i++) {
+            buttons[i].setText(board[i] == '-' ? "" : String.valueOf(board[i]));
+        }
     }
 
     public void checkGameStatus() {
