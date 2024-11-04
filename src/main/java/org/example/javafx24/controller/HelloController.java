@@ -41,13 +41,7 @@ public class HelloController {
     //Method for reset button
     public void resetBoard(ActionEvent actionEvent) {
         Model.resetBoard(); // Call the static resetBoard method from Model
-        resetScores(); // Reset scores
-    }
-
-    //Reset score method for reset button
-    private void resetScores() {
-        scoreX = 0; // Reset score for Player X
-        scoreO = 0; // Reset score for Player O
+        scoreX = scoreO = 0;
         updateScores(); // Update score display
         updateView(); // Update the view to reflect the reset state
     }
@@ -60,9 +54,8 @@ public class HelloController {
                 updateView();
                 checkGameStatus();
                 playerTurn = false;
-                if (!Model.checkWin() && !Model.checkTie()) {
+                if (!Model.checkWin() && !Model.checkTie())
                     makeAIMove();
-                }
             }
         }
     }

@@ -23,6 +23,26 @@ class ModelTest {
     }
 
     @Test
+    void testThreeInAColumnWin() {
+        // Player X wins with three in a column (first column)
+        Model.makeMove(0, 'X');
+        Model.makeMove(3, 'X');
+        Model.makeMove(6, 'X');
+
+        assertTrue(Model.checkWin(), "Player X should win with three in a column (first column).");
+    }
+
+    @Test
+    void testDiagonalWinFromTopLeft() {
+        // Player X wins with a diagonal from top-left to bottom-right
+        Model.makeMove(0, 'X');
+        Model.makeMove(4, 'X');
+        Model.makeMove(8, 'X');
+
+        assertTrue(Model.checkWin(), "Player X should win with a diagonal from top-left to bottom-right.");
+    }
+
+    @Test
     void testCannotPlaceOnOccupiedSpot() {
         // Simulera att spelare X lägger en symbol på en position
         boolean firstMove = Model.makeMove(4, 'X');

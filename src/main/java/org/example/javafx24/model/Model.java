@@ -8,7 +8,7 @@ public class Model {
 
     // Board char array for storing the current state
     static char[] board = new char[9];
-    static char lastPlayer = '-'; // Initialize lastPlayer
+    static char lastPlayer = 'X'; // Initialize lastPlayer
 
     // Constructor to reset the board at the start
     public Model() {
@@ -17,10 +17,8 @@ public class Model {
 
     // Resets the board, setting all cells to empty
     public static void resetBoard() {
-        for (int i = 0; i < 9; i++) {
-            board[i] = '-'; // '-' represents an empty cell
-        }
-        lastPlayer = 'X'; // Reset lastPlayer when the board is reset
+        java.util.Arrays.fill(board, '-');
+        lastPlayer = 'X';
     }
 
     // Makes a move for the player, returns true if successful
