@@ -39,7 +39,7 @@ public class HelloController {
         updateView(); // Update the view to reflect the reset state
     }
 
-    //If it's player turn and you click a button it will check if it's your turn and let you play
+    //If it's player turn, you click a button it will check if it's your turn and let you play
     public void buttonClicked(ActionEvent actionEvent) {
         if (playerTurn) {
             int position = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6)) - 1; // Get button position from ID

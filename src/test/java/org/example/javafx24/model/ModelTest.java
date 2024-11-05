@@ -52,4 +52,16 @@ class ModelTest {
         boolean secondMove = Model.makeMove(4, 'O');
         assertFalse(secondMove, "Det borde inte vara tillåtet att lägga en symbol på en redan upptagen plats.");
     }
+
+    @Test
+    public void testCheckTieReturnsTrueWhenBoardIsFull() {
+        // Arrange: Set up a full board with no winning line (a tie)
+        Model.board = new char[]{'X', 'O', 'X', 'O', 'X', 'X', 'O', 'X', 'O'};
+
+        // Act: Check for tie
+        boolean isTie = Model.checkTie();
+
+        // Assert: Ensure checkTie returns true, indicating a tie
+        assertTrue(isTie, "checkTie should return true when the board is full and no player has won.");
+    }
 }
